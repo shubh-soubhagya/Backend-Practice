@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import registrationRoutes from "./routes/registrationRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import videoRoutes from "./routes/videoRoutes.js";
 
 dotenv.config();
 
@@ -13,11 +15,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 // Connect to DB
 connectDB();
 
 // Routes
 app.use("/api/registration", registrationRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/videos", videoRoutes);
+
 
 // Test Route
 app.get("/", (req, res) => res.send("API is running..."));
